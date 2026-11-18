@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <RootNamespace>ShowControl.Agent</RootNamespace>
+    <AssemblyName>ShowControlAgent</AssemblyName>
+    <Version>1.6.0</Version>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <Product>Show Control Agent</Product>
+    <Company>Moving Surface Interactive Media</Company>
+    <!-- For the installer: build/installer.ps1 publishes a self-contained single file (no .NET needed on show PCs). -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <!-- One icon for the exe, tray, installer and Start menu: branding/showcontrol.ico (see branding/README.md). -->
+    <ApplicationIcon>..\..\branding\showcontrol.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Kestrel + WebSockets from the shared ASP.NET Core runtime: no NuGet packages needed -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\dashboard.html" LogicalName="dashboard.html" />
+    <EmbeddedResource Include="wwwroot\dashboard.js;wwwroot\dashboard.css" LogicalName="assets/%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\..\shared\web\sc-ui.css;..\..\shared\web\sc-ui.js;..\..\shared\web\inter.woff2;..\..\shared\web\icon.svg" LogicalName="assets/%(Filename)%(Extension)" />
+    <Compile Include="..\..\shared\dotnet\WebAssets.cs" Link="Shared\WebAssets.cs" />
+    <EmbeddedResource Include="..\..\branding\showcontrol.ico" LogicalName="showcontrol.ico" />
+    <None Include="agent.sample.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,64 @@
+/* PC dashboard: page-specific styles on top of the design system (sc-ui.css). */
+
+/* overview */
+.overview{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--s-4);margin-top:var(--s-4)}
+.facts{display:grid;gap:var(--s-4);margin:0}
+.facts > div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s-3);align-items:baseline}
+.facts dt{font-size:var(--fs-sm);color:var(--muted)}
+.facts dd{margin:0}
+.pin{font-family:var(--mono);font-size:34px;font-weight:var(--w-semibold);line-height:1;letter-spacing:.12em;color:var(--accent-text)}
+.signal-strip{display:flex;gap:var(--s-2);flex-wrap:wrap}
+.signal{display:inline-flex;align-items:center;gap:var(--s-2);padding:6px 12px 6px 10px;border:1px solid var(--line);border-radius:var(--r-full);background:var(--sunken);font-size:var(--fs-sm);font-weight:var(--w-medium)}
+
+/* phones */
+.pin-hero{display:flex;align-items:center;gap:var(--s-6);flex-wrap:wrap;padding:var(--s-6);border:1px solid var(--line);border-radius:var(--r-lg);background:var(--panel)}
+.pin-hero > div{flex:1;min-width:240px}
+
+/* app editor */
+details.adv summary{color:var(--muted);font-size:var(--fs-md);font-weight:var(--w-medium)}
+details.adv[open] summary{margin-bottom:var(--s-4)}
+.program{display:flex;flex-direction:column;gap:var(--s-3);padding:var(--s-4);border:1px dashed var(--line-strong);border-radius:var(--r-lg);background:var(--sunken)}
+.program .path{font:var(--fs-sm) var(--mono);word-break:break-all}
+.program .path.muted{font:var(--fs-md) var(--font)}
+.program .actions{display:flex;gap:var(--s-2);flex-wrap:wrap}
+.colors{display:flex;gap:var(--s-2);flex-wrap:wrap}
+.colors button{width:32px;height:32px;padding:0;border-radius:var(--r-sm);border:2px solid transparent;box-shadow:inset 0 0 0 2px var(--panel)}
+.colors button[aria-pressed="true"]{border-color:var(--text)}
+
+/* scene steps */
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:30px minmax(0,1fr);gap:var(--s-3)}
+.step .rail-n{display:flex;flex-direction:column;align-items:center}
+.step .n{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line-strong);display:grid;place-items:center;font-size:var(--fs-xs);font-weight:var(--w-semibold);color:var(--muted);background:var(--panel)}
+.step .wire{flex:1;width:2px;min-height:12px;background:var(--line)}
+.step:last-child .wire{display:none}
+.step .card{min-width:0;margin-bottom:var(--s-3);border:1px solid var(--line);border-radius:var(--r-md);background:var(--sunken)}
+.step .card-head{display:flex;align-items:center;gap:var(--s-1);padding:6px 6px 6px 14px}
+.step .card-head b{font-size:var(--fs-md);font-weight:var(--w-semibold);white-space:nowrap}
+.step .card-head .desc{flex:1;min-width:0;margin-left:6px;color:var(--muted);font-size:var(--fs-sm);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.step .card-body{display:flex;flex-direction:column;gap:var(--s-3);padding:6px 14px 14px;border-top:1px solid var(--line)}
+.step-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-2)}
+.step-menu button{padding:10px 12px;text-align:left;border:1px solid var(--line);border-radius:var(--r-md);background:var(--sunken)}
+.step-menu button:hover{border-color:var(--accent)}
+.step-menu b{display:block;font-size:var(--fs-md);font-weight:var(--w-semibold)}
+.step-menu span{font-size:var(--fs-xs);color:var(--muted)}
+
+/* file and program pickers */
+.modal .list{overflow:auto;padding:6px}
+.modal .item{display:flex;align-items:center;gap:var(--s-3);width:100%;padding:9px 12px;border:0;border-radius:var(--r-sm);background:transparent;text-align:left}
+.modal .item:hover,.modal .item:focus-visible{background:var(--raise)}
+.modal .item:disabled{opacity:.5}
+.modal .item svg{width:18px;height:18px;flex:none;color:var(--muted)}
+.modal .item .meta{margin-left:auto;font:var(--fs-xs) var(--mono);color:var(--faint)}
+.modal .item.program svg{color:var(--accent-text)}
+.crumb{display:flex;gap:var(--s-2);padding:10px 18px;border-bottom:1px solid var(--line)}
+
+/* activity log */
+.log{height:62vh;overflow:auto;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-lg);background:#0A0C10;color:#C9D1DC;font:12.5px/1.6 var(--mono);white-space:pre-wrap;word-break:break-word}
+.log .WARN{color:#F5B94A}.log .ERROR{color:#FF8A8A}
+
+@media (max-width:900px){
+  .overview{grid-template-columns:1fr}
+  .step-menu{grid-template-columns:1fr}
+  .facts > div{grid-template-columns:100px minmax(0,1fr)}
+}

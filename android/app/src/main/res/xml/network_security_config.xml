@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PC agents live on the local network at arbitrary IPs and speak plain ws://.
+     Remote control over the internet will go through TLS (wss://) via the hub in a later milestone. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

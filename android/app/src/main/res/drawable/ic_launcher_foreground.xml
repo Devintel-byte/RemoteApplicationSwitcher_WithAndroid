@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated from branding/showcontrol.svg: a monitor with a hub node broadcasting both ways, fitted inside the 66dp safe circle. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:translateX="20.720" android:translateY="21.240" android:scaleX="0.26" android:scaleY="0.26">
+        <path
+            android:pathData="M68 56H188A22 22 0 0 1 210 78V146A22 22 0 0 1 188 168H68A22 22 0 0 1 46 146V78A22 22 0 0 1 68 56Z"
+            android:strokeColor="#FFFFFFFF"
+            android:strokeWidth="13" />
+        <path
+            android:pathData="M100 200h56M128 170v28"
+            android:strokeColor="#FFFFFFFF"
+            android:strokeWidth="13"
+            android:strokeLineCap="round" />
+        <path
+            android:pathData="M116 112A12 12 0 1 1 140 112A12 12 0 1 1 116 112Z"
+            android:fillColor="#FFFFFFFF" />
+        <path
+            android:pathData="M149.30 97.09A26 26 0 0 1 149.30 126.91"
+            android:strokeColor="#FFFFFFFF"
+            android:strokeWidth="9"
+            android:strokeLineCap="round" />
+        <path
+            android:pathData="M106.70 126.91A26 26 0 0 1 106.70 97.09"
+            android:strokeColor="#FFFFFFFF"
+            android:strokeWidth="9"
+            android:strokeLineCap="round" />
+        <path
+            android:pathData="M164.04 86.76A44 44 0 0 1 164.04 137.24"
+            android:strokeColor="#FFFFFFFF"
+            android:strokeWidth="9"
+            android:strokeLineCap="round" />
+        <path
+            android:pathData="M91.96 137.24A44 44 0 0 1 91.96 86.76"
+            android:strokeColor="#FFFFFFFF"
+            android:strokeWidth="9"
+            android:strokeLineCap="round" />
+    </group>
+</vector>

@@ -1,0 +1,142 @@
+// Reference copy of agent.json with every option. The real file lives at
+// %LOCALAPPDATA%\ShowControl\agent.json (tray menu → "Edit apps & scenes").
+// Comments and trailing commas are allowed. Save the file and the agent reloads it live.
+{
+  "agentId": "",            // filled in automatically
+  "name": "PC2 · Visuals",  // what the phone shows
+  "port": 47800,
+  "discoveryPort": 47801,
+  "pairingPin": "",         // filled in automatically; tray menu → "New pairing PIN"
+  "allowPower": false,      // let controllers restart / shut down this PC
+  "clients": [],            // paired phones; delete an entry to revoke it
+
+  // For "obs" steps. In OBS: Tools → WebSocket Server Settings → Enable, copy the password.
+  "obs": { "host": "127.0.0.1", "port": 4455, "password": "" },
+
+  "apps": [
+    {
+      "id": "touchdesigner",                       // letters, digits, - and _ only
+      "name": "TouchDesigner",
+      "path": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\TouchDesigner.exe",
+      "arguments": "\"D:\\Shows\\Lobby\\mapping.toe\"",
+      "processName": "TouchDesigner",              // optional, defaults to the exe name
+      "windowStyle": "normal",                     // normal | maximized | minimized
+      "color": "violet",                           // teal | amber | violet | blue | coral | red | gray
+      "watchdog": true,                            // restart automatically if it crashes
+      "gracefulTimeoutSec": 10,                    // polite close, then force kill
+      "readyDelaySec": 3,
+      "startTimeoutSec": 60
+    },
+    {
+      "id": "resolume",
+      "name": "Resolume Arena",
+      "path": "C:\\Program Files\\Resolume Arena\\Arena.exe",
+      "processName": "Arena",
+      "color": "teal"
+    },
+    {
+      "id": "obs",
+      "name": "OBS Studio",
+      "path": "C:\\Program Files\\obs-studio\\bin\\64bit\\obs64.exe",
+      "workingDirectory": "C:\\Program Files\\obs-studio\\bin\\64bit",   // OBS needs this
+      "arguments": "--disable-shutdown-check --minimize-to-tray",
+      "processName": "obs64",
+      "color": "blue"
+    },
+    {
+      "id": "graffiti-wall",
+      "name": "Graffiti Wall",
+      "path": "D:\\Builds\\GraffitiWall\\GraffitiWall.exe",
+      "arguments": "-screen-fullscreen 1 -monitor 2",
+      "color": "coral",
+      "watchdog": true
+    }
+  ],
+
+  "scenes": [
+    {
+      "id": "main-show",
+      "name": "Main show",
+      "color": "amber",
+      "steps": [
+        { "action": "start", "appId": "resolume", "label": "Launch Resolume" },
+        { "action": "start", "appId": "touchdesigner", "label": "Launch TouchDesigner" },
+        { "action": "wait", "seconds": 2 },
+        { "action": "start", "appId": "obs" },
+        { "action": "waitForPort", "port": 4455, "timeoutSec": 30, "label": "Wait for OBS WebSocket" }
+      ]
+    },
+    // ---- Cues: momentary actions grouped in their own section on the phone ----
+    {
+      "id": "resolume-intro",
+      "name": "Intro clip",
+      "group": "Cues",
+      "color": "teal",
+      "icon": "film",
+      "steps": [
+        // Resolume: Preferences → OSC → enable OSC input on port 7000
+        { "action": "osc", "port": 7000, "address": "/composition/layers/1/clips/1/connect", "args": [1] }
+      ]
+    },
+    {
+      "id": "td-reset",
+      "name": "Reset visuals",
+      "group": "Cues",
+      "color": "violet",
+      "icon": "refresh",
+      "steps": [
+        // TouchDesigner: add an OSC In CHOP/DAT on port 10000
+        { "action": "osc", "host": "127.0.0.1", "port": 10000, "address": "/reset", "args": [1] }
+      ]
+    },
+    {
+      "id": "obs-live",
+      "name": "Go live",
+      "group": "Cues",
+      "color": "red",
+      "icon": "videocam",
+      "confirm": true,
+      "steps": [
+        { "action": "obs", "request": "SetCurrentProgramScene", "data": { "sceneName": "Live" } },
+        { "action": "obs", "request": "StartStream" }
+      ]
+    },
+    {
+      "id": "unity-next",
+      "name": "Next level",
+      "group": "Cues",
+      "color": "coral",
+      "icon": "gamepad",
+      "steps": [
+        // Unity build with ShowControlReceiver.cs listening on 9000 (see unity/ folder)
+        { "action": "osc", "port": 9000, "address": "/game/level", "args": ["next"] },
+        { "action": "udp", "port": 9000, "text": "reset" }
+      ]
+    },
+    {
+      "id": "lights-scene",
+      "name": "House lights",
+      "group": "Cues",
+      "color": "amber",
+      "icon": "light",
+      "steps": [
+        { "action": "http", "method": "POST", "url": "http://192.168.1.50/api/scene", "body": "{ \"scene\": 3 }" }
+      ]
+    },
+    {
+      "id": "wake-pc3",
+      "name": "Wake PC3",
+      "group": "Power",
+      "color": "gray",
+      "icon": "power",
+      "steps": [ { "action": "wake", "mac": "AA:BB:CC:DD:EE:FF" } ]
+    },
+    {
+      "id": "shutdown",
+      "name": "Shutdown",
+      "color": "red",
+      "confirm": true,
+      "steps": [ { "action": "stopAll" } ]
+    }
+  ]
+}

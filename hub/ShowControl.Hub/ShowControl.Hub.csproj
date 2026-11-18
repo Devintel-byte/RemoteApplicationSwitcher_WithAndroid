@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ShowControl.Hub</RootNamespace>
+    <AssemblyName>ShowControlHub</AssemblyName>
+    <Version>1.4.0</Version>
+    <Product>Show Control Hub</Product>
+    <Company>Moving Surface Interactive Media</Company>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <ApplicationIcon>..\..\branding\showcontrol.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Kestrel, WebSockets and hosting from the shared ASP.NET Core runtime: no NuGet packages -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\admin.html" LogicalName="admin.html" />
+    <EmbeddedResource Include="wwwroot\kiosk.html" LogicalName="kiosk.html" />
+    <EmbeddedResource Include="wwwroot\admin.js;wwwroot\admin.css;wwwroot\kiosk.js;wwwroot\kiosk.css" LogicalName="assets/%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\..\shared\web\sc-ui.css;..\..\shared\web\sc-ui.js;..\..\shared\web\inter.woff2;..\..\shared\web\icon.svg" LogicalName="assets/%(Filename)%(Extension)" />
+    <Compile Include="..\..\shared\dotnet\WebAssets.cs" Link="Shared\WebAssets.cs" />
+  </ItemGroup>
+
+</Project>

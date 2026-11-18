@@ -1,0 +1,56 @@
+/* Hub admin: page-specific styles on top of the design system (sc-ui.css). */
+
+/* kiosks */
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--s-4)}
+.kcard{display:flex;flex-direction:column;padding:0;overflow:hidden;text-align:left;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--panel);color:inherit;font:inherit;transition:border-color .12s,transform .12s}
+.kcard:hover{border-color:var(--line-strong);transform:translateY(-1px)}
+.kmosaic{aspect-ratio:16/9;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:2px;background:#05070A}
+.kmosaic > *{width:100%;height:100%;min-height:0;object-fit:cover;display:grid;place-items:center;color:rgba(255,255,255,.8);font-size:var(--fs-xl);font-weight:var(--w-bold)}
+.kmosaic > :only-child{grid-column:1/-1;grid-row:1/3}
+.kmosaic .none{grid-column:1/-1;grid-row:1/3;color:var(--muted);font-size:var(--fs-md);font-weight:var(--w-medium)}
+.kmeta{display:flex;flex-direction:column;gap:var(--s-1);padding:var(--s-4)}
+.kmeta b{font-size:var(--fs-base);font-weight:var(--w-semibold)}
+.kmeta .muted{font-size:var(--fs-sm)}
+.kstate{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-xs);font-weight:var(--w-semibold);color:var(--muted)}
+.kstate::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--faint)}
+.kstate.ok{color:var(--ok)}.kstate.ok::before{background:var(--ok)}
+.kstate.warn{color:var(--warn)}.kstate.warn::before{background:var(--warn)}
+.kstate.fault{color:var(--fault)}.kstate.fault::before{background:var(--fault)}
+.kitem{display:flex;align-items:center;gap:var(--s-3);padding:var(--s-3) 0;border-top:1px solid var(--line)}
+.kitem:first-child{border-top:0}
+.kitem .grow{flex:1;min-width:0}
+.kitem .ops{display:flex;gap:var(--s-1);align-items:center;flex:none}
+.kthumb{width:72px;aspect-ratio:16/9;flex:none;border-radius:var(--r-sm);overflow:hidden;display:grid;place-items:center;color:rgba(255,255,255,.85);font-size:var(--fs-md);font-weight:var(--w-bold)}
+.kthumb.big{width:160px;font-size:var(--fs-2xl)}
+.kthumb img{width:100%;height:100%;object-fit:cover}
+.kedit{display:flex;flex-direction:column;gap:var(--s-4);padding:var(--s-4);border:1px solid var(--line-strong);border-radius:var(--r-lg);background:var(--sunken)}
+.klink{word-break:break-all;font-size:var(--fs-sm)}
+#iColor .swatch{width:34px;height:34px;border-radius:50%;border:2px solid transparent}
+#iColor .swatch[aria-pressed="true"]{border-color:var(--text);box-shadow:inset 0 0 0 2px var(--panel)}
+
+/* schedules */
+.days{display:flex;gap:6px;flex-wrap:wrap}
+.days button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;color:var(--muted);font-size:var(--fs-sm);font-weight:var(--w-semibold)}
+.days button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+
+/* branding */
+.preview{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:var(--s-7);align-items:start}
+.accents{display:flex;gap:var(--s-3);flex-wrap:wrap}
+.accents button{width:40px;height:40px;padding:0;border-radius:50%;border:3px solid transparent;box-shadow:inset 0 0 0 2px var(--panel)}
+.accents button[aria-pressed="true"]{border-color:var(--text)}
+.phone{width:300px;padding:18px 16px 22px;border-radius:32px;border:1px solid var(--line-strong);background:#0E1117;color:#E8EBF1}
+.phone .hdr{display:flex;align-items:center;gap:10px}
+.phone .plogo{width:40px;height:40px;border-radius:11px;overflow:hidden;display:grid;place-items:center;background:var(--accent);color:var(--on-accent);font-size:var(--fs-sm);font-weight:var(--w-bold)}
+.phone .plogo img{width:100%;height:100%;object-fit:contain;background:#1C212B}
+.phone .pname{font-size:var(--fs-base);font-weight:var(--w-semibold)}
+.phone .psub{font-size:var(--fs-2xs);color:#9AA3B4}
+.phone .ptitle{margin:22px 0 10px;font-size:22px;font-weight:var(--w-bold)}
+.phone .pcard{margin-bottom:8px;padding:12px;border-radius:14px;border:1px solid #252B36;background:#151922}
+.phone .pcard b{font-size:var(--fs-md);font-weight:var(--w-semibold)}
+.phone .pcard span{display:block;font-size:var(--fs-2xs);color:#9AA3B4}
+.phone .pbtn{margin-top:12px;padding:10px;border-radius:12px;background:var(--accent);color:var(--on-accent);text-align:center;font-size:var(--fs-sm);font-weight:var(--w-semibold)}
+
+@media (max-width:900px){
+  .preview{grid-template-columns:1fr}
+  .phone{width:100%;max-width:340px}
+}

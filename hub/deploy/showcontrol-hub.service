@@ -1,0 +1,28 @@
+[Unit]
+Description=Show Control Hub
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=schub
+Group=schub
+WorkingDirectory=/opt/showcontrol-hub
+ExecStart=/opt/showcontrol-hub/ShowControlHub
+Environment=SC_HUB_DATA=/var/lib/showcontrol-hub
+Environment=SC_HUB_PORT=__PORT__
+# Only Apache (on this server) talks to the hub; it isn't reachable from outside directly.
+Environment=SC_HUB_BIND=127.0.0.1
+Environment=DOTNET_CLI_TELEMETRY_OPTOUT=1
+__ICU__
+Restart=always
+RestartSec=3
+# Hardening: the hub only needs its own data folder.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/showcontrol-hub
+
+[Install]
+WantedBy=multi-user.target
